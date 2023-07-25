@@ -22,4 +22,4 @@ COPY --from=compiler /app /app
 
 EXPOSE 3000
 
-CMD ["npm", "start:prod"]
+CMD [ "node", "dist/main.js" ]
