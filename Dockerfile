@@ -20,6 +20,8 @@ WORKDIR /app
 
 COPY --from=compiler /app /app
 
+ENV DB_URL=${DB_URL}
+
 EXPOSE 3000
 
 CMD [ "dist/main.js" ]
