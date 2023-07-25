@@ -1,0 +1,27 @@
+GET /students/64ba8d4e933e1fecdede75c7
+Host: localhost:3000
+
+####
+GET /students/result
+Host: localhost:3000
+####
+GET /students/result/64bfdc9f71e04ad161e7c18c
+Host: localhost:3000
+
+###
+POST /students
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "schoolTestId": "64ba8d4e933e1fecdede75c7",
+    "student_name": "testse da prova x",
+    "student_email": "teste@gmail.com",
+    "questions": [
+        {
+            "questionId": "64ba982bbb4a46635eb8f5d3",
+            "question_selected": "A",
+            "questions": [{"A":"xxxxx"}, {"B":"xxxxx"}]
+        }
+    ]
+}

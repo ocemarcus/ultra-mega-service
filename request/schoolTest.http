@@ -1,0 +1,11 @@
+GET /school-test
+Host: localhost:3000
+
+###
+POST /school-test
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "name": "teste avalição 2"
+}

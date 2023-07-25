@@ -1,0 +1,27 @@
+GET /questions
+Host: localhost:3000
+
+###
+POST /questions
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "schoolTestId": "64ba8d4e933e1fecdede75c7",
+    "question_name": "testse da prova x",
+    "question_amount": "10",
+    "questions": {
+        "A": "testetete",
+        "B": "teste b"
+    },
+    "question_correct": "A"
+}
+###
+PUT /questions/64bbc20e14bf49bac738c1ca
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "question_name": "testse 2 xxxxxx",
+    "question_amount": "25"
+}
