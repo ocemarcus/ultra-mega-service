@@ -22,4 +22,4 @@ COPY --from=compiler /app /app
 
 EXPOSE 3000
 
-CMD [ "node", "dist/main.js" ]
+CMD [ "dist/main.js" ]
