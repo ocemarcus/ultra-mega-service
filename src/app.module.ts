@@ -8,8 +8,6 @@ import { StudentModule } from './module/Student/student.module';
 
 const DB_URL = process.env.DB_URL ?? 'mongodb://localhost/dmpeople';
 
-console.log(DB_URL)
-
 @Module({
   imports: [
     MongooseModule.forRoot(DB_URL),
