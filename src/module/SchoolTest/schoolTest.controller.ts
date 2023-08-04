@@ -8,32 +8,20 @@ export class SchoolTestController {
 
   @Get()
   async find() {
-    try {
-      return await this.appService.find();
-    } catch (error) {}
+    return await this.appService.find();
   }
   @Get(':id')
   async findById(@Param() param: any) {
-    try {
-      const id = param.id as string;
-      return await this.appService.findById(id);
-    } catch (error) {}
+    const id = param.id as string;
+    return await this.appService.findById(id);
   }
   @Post()
   async save(@Body() body: SchoolTestDto) {
-    try {
-      await this.appService.save(body);
-    } catch (error) {
-      console.log(error);
-    }
+    await this.appService.save(body);
   }
   @Put(':id')
   async updateById(@Body() body: SchoolTestDto, @Param() param: any) {
-    try {
-      const id = param.id as string;
-      await this.appService.updateById(body, id);
-    } catch (error) {
-      console.log(error)
-    }
+    const id = param.id as string;
+    await this.appService.updateById(body, id);
   }
 }

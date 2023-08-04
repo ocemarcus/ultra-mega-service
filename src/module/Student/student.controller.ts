@@ -8,30 +8,18 @@ export class StudentController {
 
   @Get('/result')
   async findQuestionsResult() {
-    try {
-      return await this.appService.findQuestionsResult();
-    } catch (error) {
-      console.log(error);
-    }
+    return await this.appService.findQuestionsResult();
   }
   @Get('/result/:id')
   async findResultById(@Param() param: any) {
-    try {
-      const id = param.id as string;
-      return await this.appService.findResultById(id);
-    } catch (error) {
-      console.log(error);
-    }
+    const id = param.id as string;
+    return await this.appService.findResultById(id);
   }
 
   @Post()
   async save(@Body() body: StudentDto) {
-    try {
-      const build = this.build(body);
-      await this.appService.save(build);
-    } catch (error) {
-      console.log(error);
-    }
+    const build = this.build(body);
+    await this.appService.save(build);
   }
   private build(body: StudentDto) {
     return {
