@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import mongoose, { Model } from 'mongoose';
+import { Model } from 'mongoose';
 import { StudentDto } from './dto/student.dto';
-import { Question, QuestionDocument } from 'src/schemas/Question';
-import { Student, StudentDocument } from 'src/schemas/Student';
+import { Question, QuestionDocument } from '../../schemas/Question';
+import { Student, StudentDocument } from '../../schemas/Student';
 
 @Injectable()
 export class StudentService {
@@ -64,7 +64,12 @@ export class StudentService {
         $in: ids,
       },
     });
-    return questions.map((item) => item.toObject());
+    const q: Record<string, Question> = {};
+    for (let i = 0; i < questions.length; i++) {
+      const question = questions[i].toObject();
+      q[question._id] = question;
+    }
+    return q;
   }
   async save(body: StudentDto) {
     const questionsIds = body.questions.map((item) => item.questionId);
@@ -79,9 +84,7 @@ export class StudentService {
 
     for (let i = 0; i < body.questions.length; i++) {
       const qStudent = body.questions[i];
-      const questionId = new mongoose.Types.ObjectId(qStudent.questionId);
-      const q = questions.find((q) => q._id.equals(questionId));
-      if (!q) continue;
+      const q = questions[qStudent.questionId];
 
       if (qStudent.question_selected === q.question_correct) {
         question_success += 1;
@@ -92,12 +95,12 @@ export class StudentService {
 
       questionsStudent.push({
         ...qStudent,
-        question: questionId,
+        question: qStudent.questionId,
         question_amount: q.question_amount,
         question_correct: q.question_correct,
       });
     }
-    const instance = new this.studentModel({
+    const save = {
       question_success,
       question_total_amount,
       questions: questionsStudent,
@@ -107,7 +110,11 @@ export class StudentService {
       student_email: body.student_email,
       average: average / questionsStudent.length,
       question_quantity: questionsStudent.length,
-    });
+    };
+    await this.saveStudent(save);
+  }
+  async saveStudent(save: any) {
+    const instance = new this.studentModel(save);
     await instance.save();
   }
 }
