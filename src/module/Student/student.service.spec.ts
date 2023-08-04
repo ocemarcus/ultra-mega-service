@@ -3,7 +3,7 @@ import { StudentService } from './student.service';
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { StudentDocument } from '../../schemas/Student';
-import { QuestionDocument } from '@src/schemas/Question';
+import { QuestionDocument } from '../../schemas/Question';
 import { StudentDto } from './dto/student.dto';
 
 describe('StudentService', () => {
