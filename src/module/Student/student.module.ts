@@ -4,7 +4,7 @@ import { StudentService } from './student.service';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { Student, StudentSchema } from '../../schemas/Student';
-import { Question, QuestionSchema } from 'src/schemas/Question';
+import { Question, QuestionSchema } from '../../schemas/Question';
 
 @Module({
   imports: [
